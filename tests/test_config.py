@@ -3,7 +3,8 @@ import pytest
 from pydantic import ValidationError
 from src.config import Settings
 
-def test_settings_raises_validation_error_when_required_env_vars_missing(
+# test that the Settings class raises a ValidationError if the required environment variables are missing
+def test_env_vars_missing(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     required_vars = ["DATABASE_URL", "OPENAI_API_KEY", "ENCRYPTION_KEY"]
@@ -17,7 +18,8 @@ def test_settings_raises_validation_error_when_required_env_vars_missing(
     for var in required_vars:
         assert var in error_text
 
-def test_settings_loads_with_valid_env_file(tmp_path: Path) -> None:
+# test that the Settings class loads the environment variables from a valid .env file
+def test_valid_env_file(tmp_path: Path) -> None:
     env_file = tmp_path / ".env.test"
     env_file.write_text(
         "\n".join(
