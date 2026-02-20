@@ -1,7 +1,7 @@
 from jinja2 import StrictUndefined, Template
-
 from src.llm.prompts.draft import DraftOutput
 
+# safe templates for the fallback template
 SAFE_TEMPLATES: dict[str, dict[str, str]] = {
     "initial_outreach": {
         "subject": "Following up on your inquiry",
@@ -21,9 +21,10 @@ SAFE_TEMPLATES: dict[str, dict[str, str]] = {
     },
 }
 
+# default template name for the fallback template
 DEFAULT_TEMPLATE_NAME = "initial_outreach"
 
-
+# render a safe fallback template
 def render_fallback_template(template_name: str, context: dict) -> DraftOutput:
     """
     Render a safe fallback template.
@@ -42,7 +43,7 @@ def render_fallback_template(template_name: str, context: dict) -> DraftOutput:
 
     return DraftOutput(subject=subject, body=body, tone="professional")
 
-
+# render a template string
 def _render_template_string(template_str: str, context: dict) -> str:
     template = Template(template_str, undefined=StrictUndefined)
     return str(template.render(context))

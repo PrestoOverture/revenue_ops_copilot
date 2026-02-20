@@ -1,11 +1,9 @@
 import json
-
 import pytest
 from pydantic import ValidationError
-
 from src.llm.prompts.draft import DraftOutput, build_draft_prompt, parse_draft_response
 
-
+# test that the build_draft_prompt function builds a prompt with a system and user message
 def test_build_draft_prompt_contains_lead_and_qualification_context() -> None:
     lead_data = {
         "email": "prospect@example.com",
@@ -32,7 +30,7 @@ def test_build_draft_prompt_contains_lead_and_qualification_context() -> None:
     assert "30_days" in messages[1]["content"]
     assert "Interested in implementation this quarter." in messages[1]["content"]
 
-
+# test that the parse_draft_response function parses a valid JSON response
 def test_parse_draft_response_valid_json() -> None:
     response = json.dumps(
         {
@@ -49,7 +47,7 @@ def test_parse_draft_response_valid_json() -> None:
     assert parsed.body == "Hi Alex,\n\nThanks for reaching out. Happy to connect."
     assert parsed.tone == "professional"
 
-
+# test that the parse_draft_response function raises a ValidationError if the subject is empty
 def test_parse_draft_response_empty_subject_raises_validation_error() -> None:
     response = json.dumps(
         {
@@ -62,7 +60,7 @@ def test_parse_draft_response_empty_subject_raises_validation_error() -> None:
     with pytest.raises(ValidationError):
         parse_draft_response(response)
 
-
+# test that the parse_draft_response function raises a ValidationError if the body is empty
 def test_parse_draft_response_empty_body_raises_validation_error() -> None:
     response = json.dumps(
         {
@@ -75,7 +73,7 @@ def test_parse_draft_response_empty_body_raises_validation_error() -> None:
     with pytest.raises(ValidationError):
         parse_draft_response(response)
 
-
+# test that the parse_draft_response function raises a JSONDecodeError if the response is not valid JSON
 def test_parse_draft_response_invalid_json_raises_json_decode_error() -> None:
     with pytest.raises(json.JSONDecodeError):
         parse_draft_response("not valid json")

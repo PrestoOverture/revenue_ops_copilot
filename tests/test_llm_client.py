@@ -1,13 +1,11 @@
 import json
-
 import httpx
 import openai
 import pytest
 import respx
-
 from src.llm.client import LLMClient
 
-
+# test that the chat_completion function returns a response with the correct content, tokens_in, and tokens_out
 @pytest.mark.asyncio
 @respx.mock
 async def test_chat_completion_happy_path() -> None:
@@ -48,7 +46,7 @@ async def test_chat_completion_happy_path() -> None:
         "tokens_out": 35,
     }
 
-
+# test that the chat_completion function returns a response with the correct content, tokens_in, and tokens_out
 @pytest.mark.asyncio
 @respx.mock
 async def test_chat_completion_with_response_format() -> None:
@@ -95,7 +93,7 @@ async def test_chat_completion_with_response_format() -> None:
         "tokens_out": 22,
     }
 
-
+# test that the chat_completion function raises a RateLimitError if the API returns a 429 status code
 @pytest.mark.asyncio
 @respx.mock
 async def test_chat_completion_rate_limit_error_propagates() -> None:
@@ -120,7 +118,7 @@ async def test_chat_completion_rate_limit_error_propagates() -> None:
             messages=[{"role": "user", "content": "Qualify this lead"}],
         )
 
-
+# test that the chat_completion function raises a ReadTimeoutError if the API returns a 504 status code
 @pytest.mark.asyncio
 @respx.mock
 async def test_chat_completion_timeout_error_propagates() -> None:

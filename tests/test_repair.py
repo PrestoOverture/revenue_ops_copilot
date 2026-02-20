@@ -1,13 +1,11 @@
 from unittest.mock import AsyncMock, patch
-
 import httpx
 import openai
 import pytest
-
 from src.llm.client import LLMClient
 from src.llm.repair import repair_json
 
-
+# test that the repair_json function successfully repairs a JSON payload
 @pytest.mark.asyncio
 async def test_repair_json_successful_repair() -> None:
     schema = {"type": "object", "properties": {"priority": {"type": "string"}}}
@@ -30,7 +28,7 @@ async def test_repair_json_successful_repair() -> None:
         assert result == repaired_payload
         mock_chat.assert_awaited_once()
 
-
+# test that the repair_json function returns None if the LLM returns invalid JSON
 @pytest.mark.asyncio
 async def test_repair_json_invalid_repair_returns_none() -> None:
     schema = {"type": "object", "properties": {"priority": {"type": "string"}}}
@@ -53,6 +51,7 @@ async def test_repair_json_invalid_repair_returns_none() -> None:
         mock_chat.assert_awaited_once()
 
 
+# test that the repair_json function returns None if the LLM returns an error
 @pytest.mark.asyncio
 async def test_repair_json_llm_error_returns_none() -> None:
     schema = {"type": "object"}
@@ -72,6 +71,7 @@ async def test_repair_json_llm_error_returns_none() -> None:
         mock_chat.assert_awaited_once()
 
 
+# test that the repair_json function attempts to repair a truncated input
 @pytest.mark.asyncio
 async def test_repair_json_truncated_input_still_attempts_repair() -> None:
     truncated_input = '{"priority":"P1","notes":"needs fol'

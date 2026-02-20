@@ -8,7 +8,7 @@ MODEL_PRICING: dict[str, dict[str, float]] = {
 _TOKENS_PER_1K = Decimal("1000")
 _USD_PRECISION = Decimal("0.000001")
 
-
+# calculate the cost for a given model, tokens_in, and tokens_out
 def calculate_cost(model: str, tokens_in: int, tokens_out: int) -> Decimal:
     if model not in MODEL_PRICING:
         raise ValueError(f"Unknown model '{model}' in MODEL_PRICING")

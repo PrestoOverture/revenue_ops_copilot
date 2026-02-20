@@ -1,16 +1,15 @@
 import json
-
 from pydantic import BaseModel, Field
 
 PROMPT_VERSION = "draft_v1.0"
 
-
+# output schema for the draft prompt
 class DraftOutput(BaseModel):
     subject: str = Field(min_length=1)
     body: str = Field(min_length=1)
     tone: str
 
-
+# build the messages for the draft prompt
 def build_draft_prompt(lead_data: dict, qualification: dict) -> list[dict[str, str]]:
     schema_json = json.dumps(
         DraftOutput.model_json_schema(),
@@ -45,7 +44,7 @@ def build_draft_prompt(lead_data: dict, qualification: dict) -> list[dict[str, s
         {"role": "user", "content": user_prompt},
     ]
 
-
+# parse the response from the draft prompt
 def parse_draft_response(response: str) -> DraftOutput:
     parsed = json.loads(response)
     return DraftOutput(**parsed)

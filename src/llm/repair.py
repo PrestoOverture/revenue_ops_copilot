@@ -1,18 +1,16 @@
 import json
 import logging
-
 from src.llm.client import LLMClient
 
 logger = logging.getLogger(__name__)
-
 REPAIR_MODEL = "gpt-4o-mini"
 
-
+# repair a JSON payload using the LLM and return the repaired JSON or None if the repair fails
 async def repair_json(
-    llm_client: LLMClient,
-    invalid_json: str,
-    schema: dict,
-) -> dict | None:
+    llm_client: LLMClient, # LLM client to use for the repair
+    invalid_json: str, # JSON payload to repair
+    schema: dict, # JSON schema to repair the JSON payload to
+) -> dict | None: # repaired JSON payload or None if the repair fails
     logger.info(
         "repair_json_attempt_started",
         extra={
@@ -69,7 +67,7 @@ async def repair_json(
     )
     return repaired
 
-
+# build the messages for the repair prompt
 def _build_repair_messages(invalid_json: str, schema: dict) -> list[dict[str, str]]:
     schema_json = json.dumps(schema, ensure_ascii=True, sort_keys=True)
     return [
