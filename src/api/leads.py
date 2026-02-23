@@ -1,13 +1,9 @@
 import logging
-from typing import Any
+from typing import Any, cast
 from uuid import UUID
 from fastapi import APIRouter, HTTPException
+import temporalio.client as temporal_client
 from temporalio.service import RPCError, RPCStatusCode
-try:
-    from temporalio.client import WorkflowNotFoundError
-except ImportError:  # temporalio versions without client.WorkflowNotFoundError
-    class WorkflowNotFoundError(Exception):
-        """Compatibility placeholder for Temporal SDKs without WorkflowNotFoundError."""
 from src.api.models import ApprovalRequest, LeadStatusResponse
 from src.db.connection import Database
 from src.db.queries import get_lead_by_id
@@ -16,6 +12,11 @@ from src.workflows.lead_workflow import LeadWorkflow
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
+TemporalWorkflowNotFoundError = cast(
+    type[Exception],
+    getattr(temporal_client, "WorkflowNotFoundError", Exception),
+)
+
 
 # signal a lead workflow
 @router.post("/leads/{lead_id}/signal")
@@ -46,7 +47,7 @@ async def signal_lead_workflow(lead_id: UUID, body: ApprovalRequest) -> dict[str
                 await handle.signal(LeadWorkflow.approve)
             else:
                 await handle.signal(LeadWorkflow.cancel)
-        except WorkflowNotFoundError:
+        except TemporalWorkflowNotFoundError:
             raise HTTPException(
                 status_code=404,
                 detail="Workflow not found or already completed",
@@ -74,8 +75,11 @@ async def signal_lead_workflow(lead_id: UUID, body: ApprovalRequest) -> dict[str
     except HTTPException:
         raise
     except Exception:
-        logger.exception("lead_signal_failed lead_id=%s action=%s", lead_id, body.action)
+        logger.exception(
+            "lead_signal_failed lead_id=%s action=%s", lead_id, body.action
+        )
         raise HTTPException(status_code=500, detail="Internal server error") from None
+
 
 # get a lead status
 @router.get("/leads/{lead_id}")

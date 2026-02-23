@@ -12,7 +12,12 @@ logger = logging.getLogger(__name__)
 async def write_outbox_email(lead_id: str, draft: DraftResult, touchpoint: int) -> str:
     logger.info(
         "write_outbox_email_started",
-        extra={"lead_id": lead_id, "type": "SEND_EMAIL", "touchpoint": touchpoint},
+        extra={
+            "lead_id": lead_id,
+            "outbox_id": None,
+            "type": "SEND_EMAIL",
+            "touchpoint": touchpoint,
+        },
     )
 
     lead_id_uuid = UUID(lead_id)
@@ -54,12 +59,13 @@ async def write_outbox_email(lead_id: str, draft: DraftResult, touchpoint: int) 
     )
     return str(outbox_id)
 
+
 # write a CRM_UPSERT intent to the outbox
 @activity.defn
 async def write_outbox_crm(lead_id: str, qualification: QualificationResult) -> str:
     logger.info(
         "write_outbox_crm_started",
-        extra={"lead_id": lead_id, "type": "CRM_UPSERT"},
+        extra={"lead_id": lead_id, "outbox_id": None, "type": "CRM_UPSERT"},
     )
 
     lead_id_uuid = UUID(lead_id)

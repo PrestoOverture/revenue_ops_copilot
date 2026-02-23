@@ -1,14 +1,11 @@
 import logging
+from typing import cast
 from uuid import UUID
 import asyncpg  # type: ignore[import-untyped]
 from fastapi import APIRouter, HTTPException
+import temporalio.client as temporal_client
 from temporalio.common import WorkflowIDReusePolicy
-try:
-    from temporalio.client import WorkflowExecutionAlreadyStartedError
-except ImportError:  # temporalio<1.23 compatibility
-    from temporalio.exceptions import (
-        WorkflowAlreadyStartedError as WorkflowExecutionAlreadyStartedError,
-    )
+from temporalio.exceptions import WorkflowAlreadyStartedError
 from src.api.models import WebhookPayload, WebhookResponse
 from src.config import Settings
 from src.db.connection import Database
@@ -19,6 +16,16 @@ from src.workflows.models import LeadWorkflowInput
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
+TemporalWorkflowAlreadyStartedError = cast(
+    type[Exception],
+    getattr(
+        temporal_client,
+        "WorkflowExecutionAlreadyStartedError",
+        WorkflowAlreadyStartedError,
+    ),
+)
+WorkflowExecutionAlreadyStartedError = TemporalWorkflowAlreadyStartedError
+
 
 # ingest a lead webhook
 @router.post("/webhooks/lead")
@@ -29,9 +36,12 @@ async def ingest_lead_webhook(payload: WebhookPayload) -> WebhookResponse:
 
     # log webhook received
     logger.info(
-        "Lead webhook received tenant_id=%s external_lead_id=%s",
-        payload.tenant_id,
-        payload.external_lead_id,
+        "lead_webhook_received",
+        extra={
+            "tenant_id": str(payload.tenant_id),
+            "external_lead_id": payload.external_lead_id,
+            "workflow_id": workflow_id,
+        },
     )
 
     try:
@@ -54,9 +64,12 @@ async def ingest_lead_webhook(payload: WebhookPayload) -> WebhookResponse:
                     )
                 except asyncpg.UniqueViolationError:
                     logger.info(
-                        "Duplicate lead detected tenant_id=%s external_lead_id=%s",
-                        payload.tenant_id,
-                        payload.external_lead_id,
+                        "lead_webhook_duplicate_event",
+                        extra={
+                            "tenant_id": str(payload.tenant_id),
+                            "external_lead_id": payload.external_lead_id,
+                            "workflow_id": workflow_id,
+                        },
                     )
                     return WebhookResponse(workflow_id=workflow_id, status="duplicate")
 
@@ -88,25 +101,33 @@ async def ingest_lead_webhook(payload: WebhookPayload) -> WebhookResponse:
                 task_queue=settings.TEMPORAL_TASK_QUEUE,
                 id_reuse_policy=WorkflowIDReusePolicy.REJECT_DUPLICATE,
             )
-        except WorkflowExecutionAlreadyStartedError:
+        except TemporalWorkflowAlreadyStartedError:
             logger.info(
-                "Duplicate lead detected tenant_id=%s external_lead_id=%s",
-                payload.tenant_id,
-                payload.external_lead_id,
+                "lead_webhook_duplicate_workflow",
+                extra={
+                    "tenant_id": str(payload.tenant_id),
+                    "external_lead_id": payload.external_lead_id,
+                    "workflow_id": workflow_id,
+                },
             )
             return WebhookResponse(workflow_id=workflow_id, status="duplicate")
 
         logger.info(
-            "Workflow started tenant_id=%s external_lead_id=%s workflow_id=%s",
-            payload.tenant_id,
-            payload.external_lead_id,
-            workflow_id,
+            "lead_webhook_workflow_started",
+            extra={
+                "tenant_id": str(payload.tenant_id),
+                "external_lead_id": payload.external_lead_id,
+                "workflow_id": workflow_id,
+            },
         )
         return WebhookResponse(workflow_id=workflow_id, status="accepted")
     except Exception:
         logger.exception(
-            "lead_webhook_ingestion_failed tenant_id=%s external_lead_id=%s",
-            payload.tenant_id,
-            payload.external_lead_id,
+            "lead_webhook_ingestion_failed",
+            extra={
+                "tenant_id": str(payload.tenant_id),
+                "external_lead_id": payload.external_lead_id,
+                "workflow_id": workflow_id,
+            },
         )
         raise HTTPException(status_code=500, detail="Internal server error") from None

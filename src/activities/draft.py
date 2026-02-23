@@ -23,10 +23,14 @@ from src.workflows.models import DraftResult, QualificationResult
 logger = logging.getLogger(__name__)
 DRAFT_MODEL = "gpt-4o"
 
+
 # draft an email for the lead using parse -> repair -> fallback handling
 @activity.defn
 async def draft_email(lead_id: str, qualification: QualificationResult) -> DraftResult:
-    logger.info("draft_email_started", extra={"lead_id": lead_id})
+    logger.info(
+        "draft_email_started",
+        extra={"lead_id": lead_id, "repair_attempted": False, "fallback_used": None},
+    )
 
     settings = Settings()  # type: ignore[call-arg]
     llm_client = LLMClient(api_key=settings.OPENAI_API_KEY)
@@ -57,6 +61,8 @@ async def draft_email(lead_id: str, qualification: QualificationResult) -> Draft
             "draft_email_llm_completed",
             extra={
                 "lead_id": lead_id,
+                "repair_attempted": False,
+                "fallback_used": None,
                 "tokens_in": tokens_in,
                 "tokens_out": tokens_out,
                 "latency_ms": latency_ms,
@@ -72,7 +78,14 @@ async def draft_email(lead_id: str, qualification: QualificationResult) -> Draft
         except (json.JSONDecodeError, ValidationError):
             schema_valid = False
             repair_attempted = True
-            logger.info("draft_email_repair_attempt", extra={"lead_id": lead_id})
+            logger.info(
+                "draft_email_repair_attempt",
+                extra={
+                    "lead_id": lead_id,
+                    "repair_attempted": True,
+                    "fallback_used": None,
+                },
+            )
             repaired_payload = await repair_json(
                 llm_client=llm_client,
                 invalid_json=content,
@@ -102,6 +115,7 @@ async def draft_email(lead_id: str, qualification: QualificationResult) -> Draft
                     "draft_email_fallback_used",
                     extra={
                         "lead_id": lead_id,
+                        "repair_attempted": repair_attempted,
                         "fallback_used": fallback_used,
                     },
                 )

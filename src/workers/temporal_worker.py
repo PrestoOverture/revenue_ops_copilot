@@ -8,13 +8,14 @@ from src.activities.outbox import write_outbox_crm, write_outbox_email
 from src.activities.qualify import qualify_lead
 from src.config import Settings
 from src.db.connection import Database
+from src.logging_config import setup_logging
 from src.workflows.client import get_temporal_client
 from src.workflows.followup_workflow import FollowupWorkflow
 from src.workflows.lead_workflow import LeadWorkflow
 
 # run the temporal worker
 async def run_worker() -> None:
-    logging.basicConfig(level=logging.INFO)
+    setup_logging()
     logger = logging.getLogger(__name__)
 
     settings = Settings()  # type: ignore[call-arg]

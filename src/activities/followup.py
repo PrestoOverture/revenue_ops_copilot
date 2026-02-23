@@ -12,6 +12,7 @@ from src.workflows.models import FollowupWorkflowInput, QualificationResult
 
 logger = logging.getLogger(__name__)
 
+
 # schedule a followup for the lead
 @activity.defn
 async def schedule_followup(
@@ -68,6 +69,7 @@ async def schedule_followup(
     logger.info(
         "schedule_followup_completed",
         extra={
+            "lead_id": lead_id,
             "workflow_id": workflow_id,
             "delay_hours": delay_hours,
             "touchpoint": touchpoint,

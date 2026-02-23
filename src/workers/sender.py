@@ -13,11 +13,13 @@ from src.db.outbox_queries import (
     mark_outbox_sent,
     recover_stuck_entries,
 )
+from src.logging_config import setup_logging
 
 logger = logging.getLogger(__name__)
 
 BATCH_SIZE: int = 50
 POLL_INTERVAL_SECONDS: int = 5
+
 
 # outbox record model
 class OutboxRecord(BaseModel):
@@ -35,6 +37,7 @@ class OutboxRecord(BaseModel):
     created_at: datetime
     updated_at: datetime
     sent_at: datetime | None
+
 
 # poll outbox for pending records and return records
 async def poll_outbox() -> list[OutboxRecord]:
@@ -56,8 +59,17 @@ async def poll_outbox() -> list[OutboxRecord]:
         rows = await conn.fetch(query, BATCH_SIZE)
 
     records = [OutboxRecord.model_validate(dict(row)) for row in rows]
-    logger.info("sender_polled_outbox", extra={"record_count": len(records)})
+    logger.info(
+        "sender_polled_outbox",
+        extra={
+            "record_count": len(records),
+            "outbox_id": None,
+            "type": None,
+            "status": "PENDING",
+        },
+    )
     return records
+
 
 # dispatch record to appropriate sender and return success
 async def dispatch(record: OutboxRecord) -> bool:
@@ -72,9 +84,14 @@ async def dispatch(record: OutboxRecord) -> bool:
 
     logger.error(
         "outbox_unknown_type",
-        extra={"outbox_id": str(record.id), "type": record.type},
+        extra={
+            "outbox_id": str(record.id),
+            "type": record.type,
+            "status": record.status,
+        },
     )
     return False
+
 
 # process outbox record and mark as sent or failed
 async def process_record(record: OutboxRecord) -> None:
@@ -97,7 +114,12 @@ async def process_record(record: OutboxRecord) -> None:
     except Exception as exc:
         logger.error(
             "outbox_process_error",
-            extra={"outbox_id": str(record.id), "error": str(exc)},
+            extra={
+                "outbox_id": str(record.id),
+                "type": record.type,
+                "status": record.status,
+                "error": str(exc),
+            },
         )
         new_attempt = record.attempts + 1
         if new_attempt >= record.max_attempts:
@@ -105,17 +127,27 @@ async def process_record(record: OutboxRecord) -> None:
             return
         await mark_outbox_failed(record.id, str(exc), new_attempt)
 
+
 # run sender worker and handle shutdown signals
 async def run_sender() -> None:
+    setup_logging()
     await Database.connect()
-    logger.info("sender_worker_started")
+    logger.info(
+        "sender_worker_started",
+        extra={"outbox_id": None, "type": None, "status": "STARTED"},
+    )
     shutdown_event = asyncio.Event()
     loop = asyncio.get_running_loop()
 
     def _handle_shutdown_signal(signal_name: str) -> None:
         logger.info(
             "sender_worker_shutdown_signal_received",
-            extra={"signal": signal_name},
+            extra={
+                "signal": signal_name,
+                "outbox_id": None,
+                "type": None,
+                "status": "SHUTDOWN_SIGNAL",
+            },
         )
         shutdown_event.set()
 
@@ -125,7 +157,12 @@ async def run_sender() -> None:
         except (NotImplementedError, RuntimeError, ValueError):
             logger.warning(
                 "sender_worker_signal_handler_unavailable",
-                extra={"signal": sig.name},
+                extra={
+                    "signal": sig.name,
+                    "outbox_id": None,
+                    "type": None,
+                    "status": "SIGNAL_HANDLER_UNAVAILABLE",
+                },
             )
 
     try:
@@ -136,12 +173,23 @@ async def run_sender() -> None:
                 for record in records:
                     await process_record(record)
             except Exception as exc:
-                logger.error("sender_worker_loop_error", extra={"error": str(exc)})
+                logger.error(
+                    "sender_worker_loop_error",
+                    extra={
+                        "error": str(exc),
+                        "outbox_id": None,
+                        "type": None,
+                        "status": "LOOP_ERROR",
+                    },
+                )
 
             await asyncio.sleep(POLL_INTERVAL_SECONDS)
     finally:
         await Database.disconnect()
-        logger.info("sender_worker_stopped")
+        logger.info(
+            "sender_worker_stopped",
+            extra={"outbox_id": None, "type": None, "status": "STOPPED"},
+        )
 
 
 if __name__ == "__main__":

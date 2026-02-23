@@ -5,12 +5,13 @@ from src.llm.client import LLMClient
 logger = logging.getLogger(__name__)
 REPAIR_MODEL = "gpt-4o-mini"
 
+
 # repair a JSON payload using the LLM and return the repaired JSON or None if the repair fails
 async def repair_json(
-    llm_client: LLMClient, # LLM client to use for the repair
-    invalid_json: str, # JSON payload to repair
-    schema: dict, # JSON schema to repair the JSON payload to
-) -> dict | None: # repaired JSON payload or None if the repair fails
+    llm_client: LLMClient,  # LLM client to use for the repair
+    invalid_json: str,  # JSON payload to repair
+    schema: dict,  # JSON schema to repair the JSON payload to
+) -> dict | None:  # repaired JSON payload or None if the repair fails
     logger.info(
         "repair_json_attempt_started",
         extra={
@@ -31,7 +32,7 @@ async def repair_json(
     except Exception as exc:
         logger.warning(
             "repair_json_llm_call_failed",
-            extra={"error_type": type(exc).__name__},
+            extra={"model": REPAIR_MODEL, "error_type": type(exc).__name__},
             exc_info=exc,
         )
         return None
@@ -40,7 +41,7 @@ async def repair_json(
     if not isinstance(content, str):
         logger.warning(
             "repair_json_response_content_invalid",
-            extra={"content_type": type(content).__name__},
+            extra={"model": REPAIR_MODEL, "content_type": type(content).__name__},
         )
         return None
 
@@ -49,7 +50,7 @@ async def repair_json(
     except json.JSONDecodeError as exc:
         logger.warning(
             "repair_json_parse_failed",
-            extra={"error_type": type(exc).__name__},
+            extra={"model": REPAIR_MODEL, "error_type": type(exc).__name__},
             exc_info=exc,
         )
         return None
@@ -57,15 +58,16 @@ async def repair_json(
     if not isinstance(repaired, dict):
         logger.warning(
             "repair_json_result_not_object",
-            extra={"parsed_type": type(repaired).__name__},
+            extra={"model": REPAIR_MODEL, "parsed_type": type(repaired).__name__},
         )
         return None
 
     logger.info(
         "repair_json_attempt_succeeded",
-        extra={"repaired_keys": sorted(repaired.keys())},
+        extra={"model": REPAIR_MODEL, "repaired_keys": sorted(repaired.keys())},
     )
     return repaired
+
 
 # build the messages for the repair prompt
 def _build_repair_messages(invalid_json: str, schema: dict) -> list[dict[str, str]]:

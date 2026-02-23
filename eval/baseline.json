@@ -1,0 +1,1119 @@
+{
+  "_metadata": {
+    "created_at": "2026-02-22T07:18:17Z",
+    "created_by": "mock baseline",
+    "notes": "Initial baseline with qualify_v1.0 using deterministic mock responses"
+  },
+  "timestamp": "2026-02-22T07:10:53Z",
+  "model": "gpt-4o-mini",
+  "prompt_version": "qualify_v1.0",
+  "mode": "mock",
+  "metrics": {
+    "priority_accuracy": 1.0,
+    "schema_valid_rate": 1.0,
+    "compliance_score": 1.0
+  },
+  "sample_count": 50,
+  "results": [
+    {
+      "sample_id": "001",
+      "expected": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "002",
+      "expected": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "003",
+      "expected": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "004",
+      "expected": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "005",
+      "expected": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "006",
+      "expected": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "007",
+      "expected": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "008",
+      "expected": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "009",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "010",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "011",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "012",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "013",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "014",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "015",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "016",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "017",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "018",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "019",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "020",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "021",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "022",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "023",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "024",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "025",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "026",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "027",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "028",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "029",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "exploratory",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "exploratory",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "030",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "90_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "90_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "031",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "032",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "033",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "034",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "035",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "smb",
+        "timeline": "90_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "036",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "037",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "038",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "039",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "040",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "041",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "042",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "043",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "044",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "045",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "046",
+      "expected": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "BLOCK"
+      },
+      "actual": {
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "BLOCK",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "047",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "BLOCK"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "BLOCK",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "048",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "BLOCK"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "BLOCK",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "049",
+      "expected": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "90_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "90_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    },
+    {
+      "sample_id": "050",
+      "expected": {
+        "priority": "P1",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW"
+      },
+      "actual": {
+        "priority": "P1",
+        "budget_range": "enterprise",
+        "timeline": "30_days",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Mock qualification for eval sample"
+      },
+      "schema_valid": true,
+      "repair_attempted": false,
+      "priority_match": true,
+      "policy_match": true
+    }
+  ]
+}

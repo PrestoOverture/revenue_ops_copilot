@@ -23,10 +23,19 @@ from src.workflows.models import QualificationResult
 logger = logging.getLogger(__name__)
 QUALIFY_MODEL = "gpt-4o-mini"
 
+
 # qualify the lead
 @activity.defn
 async def qualify_lead(lead_id: str) -> QualificationResult:
-    logger.info("qualify_lead_started", extra={"lead_id": lead_id})
+    logger.info(
+        "qualify_lead_started",
+        extra={
+            "lead_id": lead_id,
+            "priority": None,
+            "repair_attempted": False,
+            "fallback_used": None,
+        },
+    )
 
     settings = Settings()  # type: ignore[call-arg]
     llm_client = LLMClient(api_key=settings.OPENAI_API_KEY)
@@ -57,6 +66,9 @@ async def qualify_lead(lead_id: str) -> QualificationResult:
             "qualify_lead_llm_completed",
             extra={
                 "lead_id": lead_id,
+                "priority": None,
+                "repair_attempted": False,
+                "fallback_used": None,
                 "tokens_in": tokens_in,
                 "tokens_out": tokens_out,
                 "latency_ms": latency_ms,
@@ -74,7 +86,12 @@ async def qualify_lead(lead_id: str) -> QualificationResult:
             repair_attempted = True
             logger.info(
                 "qualify_lead_repair_attempt",
-                extra={"lead_id": lead_id},
+                extra={
+                    "lead_id": lead_id,
+                    "priority": None,
+                    "repair_attempted": True,
+                    "fallback_used": None,
+                },
             )
             repaired_payload = await repair_json(
                 llm_client=llm_client,
@@ -97,6 +114,8 @@ async def qualify_lead(lead_id: str) -> QualificationResult:
                     "qualify_lead_fallback_used",
                     extra={
                         "lead_id": lead_id,
+                        "priority": qualification.priority,
+                        "repair_attempted": repair_attempted,
                         "fallback_used": fallback_used,
                     },
                 )
@@ -138,6 +157,7 @@ async def qualify_lead(lead_id: str) -> QualificationResult:
         "qualify_lead_completed",
         extra={
             "lead_id": lead_id,
+            "priority": qualification.priority,
             "repair_attempted": repair_attempted,
             "fallback_used": fallback_used,
             "schema_valid": schema_valid,
