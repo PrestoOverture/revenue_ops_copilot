@@ -78,7 +78,11 @@ async def real_qualify(
     Returns (output, schema_valid, repair_attempted).
     """
     messages = build_qualify_prompt(lead_data)
-    response = await llm_client.chat_completion(model=QUALIFY_MODEL, messages=messages)
+    response = await llm_client.chat_completion(
+        model=QUALIFY_MODEL,
+        messages=messages,
+        temperature=0,
+    )
     content = str(response["content"])
 
     schema_valid = True

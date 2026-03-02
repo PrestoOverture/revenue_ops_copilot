@@ -15,11 +15,7 @@ logger = logging.getLogger(__name__)
 
 # schedule a followup for the lead
 @activity.defn
-async def schedule_followup(
-    lead_id: str,
-    touchpoint: int,
-    qualification: QualificationResult,
-) -> str:
+async def schedule_followup(lead_id: str, touchpoint: int, qualification: QualificationResult) -> str:
     lead_id_uuid = UUID(lead_id)
     pool = Database.pool
     if pool is None:

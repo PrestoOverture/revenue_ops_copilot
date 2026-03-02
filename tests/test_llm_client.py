@@ -93,6 +93,50 @@ async def test_chat_completion_with_response_format() -> None:
         "tokens_out": 22,
     }
 
+
+@pytest.mark.asyncio
+@respx.mock
+async def test_chat_completion_with_temperature() -> None:
+    route = respx.post("https://api.openai.com/v1/chat/completions").mock(
+        return_value=httpx.Response(
+            200,
+            json={
+                "id": "chatcmpl-test-2b",
+                "object": "chat.completion",
+                "created": 1_707_000_000,
+                "model": "gpt-4o-mini",
+                "choices": [
+                    {
+                        "index": 0,
+                        "message": {"role": "assistant", "content": "Deterministic output"},
+                        "finish_reason": "stop",
+                    }
+                ],
+                "usage": {
+                    "prompt_tokens": 90,
+                    "completion_tokens": 20,
+                    "total_tokens": 110,
+                },
+            },
+        )
+    )
+    client = LLMClient(api_key="test-api-key")
+
+    response = await client.chat_completion(
+        model="gpt-4o-mini",
+        messages=[{"role": "user", "content": "Return JSON"}],
+        temperature=0,
+    )
+
+    assert route.called
+    request_payload = json.loads(route.calls[0].request.content.decode("utf-8"))
+    assert request_payload["temperature"] == 0
+    assert response == {
+        "content": "Deterministic output",
+        "tokens_in": 90,
+        "tokens_out": 20,
+    }
+
 # test that the chat_completion function raises a RateLimitError if the API returns a 429 status code
 @pytest.mark.asyncio
 @respx.mock

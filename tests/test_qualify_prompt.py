@@ -3,6 +3,7 @@ import pytest
 from pydantic import ValidationError
 from src.llm.prompts.qualify import (
     FALLBACK_QUALIFICATION,
+    PROMPT_VERSION,
     QualificationOutput,
     build_qualify_prompt,
     parse_qualify_response,
@@ -27,6 +28,29 @@ def test_build_qualify_prompt_contains_system_and_user_messages() -> None:
     assert "Acme Corp" in messages[1]["content"]
     assert "web_form" in messages[1]["content"]
     assert "raw_payload" in messages[1]["content"]
+    assert "Priority Tier Definitions" in messages[0]["content"]
+    assert "Policy Decision Rules" in messages[0]["content"]
+    assert "Routing Rules" in messages[0]["content"]
+    assert "Timeline Inference Rules" in messages[0]["content"]
+
+
+def test_qualify_prompt_version_is_v2() -> None:
+    assert PROMPT_VERSION == "qualify_v2.0"
+
+
+def test_user_prompt_contains_few_shot_examples() -> None:
+    messages = build_qualify_prompt({"email": "test@example.com"})
+    user_prompt = messages[1]["content"]
+
+    assert "Example 1 (P0/ALLOW)" in user_prompt
+    assert "Example 2 (P2/REQUIRE_REVIEW)" in user_prompt
+    assert "Example 3 (P3/BLOCK)" in user_prompt
+
+
+def test_user_prompt_does_not_include_conservative_bias_phrase() -> None:
+    messages = build_qualify_prompt({"email": "test@example.com"})
+    user_prompt = messages[1]["content"].lower()
+    assert "choose policy_decision and routing conservatively" not in user_prompt
 
 # test that the parse_qualify_response function parses a valid JSON response
 def test_parse_qualify_response_valid_json() -> None:

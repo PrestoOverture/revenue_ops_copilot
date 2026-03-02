@@ -7,11 +7,7 @@ REPAIR_MODEL = "gpt-4o-mini"
 
 
 # repair a JSON payload using the LLM and return the repaired JSON or None if the repair fails
-async def repair_json(
-    llm_client: LLMClient,  # LLM client to use for the repair
-    invalid_json: str,  # JSON payload to repair
-    schema: dict,  # JSON schema to repair the JSON payload to
-) -> dict | None:  # repaired JSON payload or None if the repair fails
+async def repair_json(llm_client: LLMClient, invalid_json: str, schema: dict) -> dict | None:
     logger.info(
         "repair_json_attempt_started",
         extra={

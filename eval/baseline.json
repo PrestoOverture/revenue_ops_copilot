@@ -1,17 +1,34 @@
 {
   "_metadata": {
-    "created_at": "2026-02-22T07:18:17Z",
-    "created_by": "mock baseline",
-    "notes": "Initial baseline with qualify_v1.0 using deterministic mock responses"
+    "created_at": "2026-03-01T16:50:09Z",
+    "created_by": "real LLM baseline v2.0",
+    "notes": "Real baseline with qualify_v2.0 using gpt-4o-mini, temperature=0. Median of 3 runs selected (run1, tie-broken by compliance_score).",
+    "variance": {
+      "priority_accuracy": [
+        0.74,
+        0.74,
+        0.74
+      ],
+      "schema_valid_rate": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "compliance_score": [
+        0.805,
+        0.793,
+        0.805
+      ]
+    }
   },
-  "timestamp": "2026-02-22T07:10:53Z",
+  "timestamp": "2026-03-01T16:45:05Z",
   "model": "gpt-4o-mini",
-  "prompt_version": "qualify_v1.0",
-  "mode": "mock",
+  "prompt_version": "qualify_v2.0",
+  "mode": "real",
   "metrics": {
-    "priority_accuracy": 1.0,
+    "priority_accuracy": 0.74,
     "schema_valid_rate": 1.0,
-    "compliance_score": 1.0
+    "compliance_score": 0.805
   },
   "sample_count": 50,
   "results": [
@@ -30,7 +47,7 @@
         "timeline": "immediate",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise CTO requested demo with high intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -49,10 +66,10 @@
       "actual": {
         "priority": "P0",
         "budget_range": "enterprise",
-        "timeline": "30_days",
+        "timeline": "immediate",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise VP requested pricing information with high intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -71,10 +88,10 @@
       "actual": {
         "priority": "P0",
         "budget_range": "enterprise",
-        "timeline": "immediate",
+        "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise CIO inquired with high intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -93,10 +110,10 @@
       "actual": {
         "priority": "P0",
         "budget_range": "enterprise",
-        "timeline": "30_days",
+        "timeline": "immediate",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise C-suite requested demo with high intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -118,7 +135,7 @@
         "timeline": "immediate",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise VP requested pricing information with high intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -140,7 +157,7 @@
         "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise CTO inquired with high intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -162,7 +179,7 @@
         "timeline": "immediate",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise SVP requested demo with high intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -181,10 +198,10 @@
       "actual": {
         "priority": "P0",
         "budget_range": "enterprise",
-        "timeline": "30_days",
+        "timeline": "immediate",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise VP requested pricing information with high intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -206,7 +223,7 @@
         "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Director title from a real company attending a webinar indicates moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -225,10 +242,10 @@
       "actual": {
         "priority": "P1",
         "budget_range": "mid_market",
-        "timeline": "90_days",
+        "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Moderate intent source from a real company with a business email domain."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -247,10 +264,10 @@
       "actual": {
         "priority": "P1",
         "budget_range": "mid_market",
-        "timeline": "30_days",
+        "timeline": "90_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Director title from a real company, submitted a contact form indicating moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -269,10 +286,10 @@
       "actual": {
         "priority": "P1",
         "budget_range": "mid_market",
-        "timeline": "90_days",
+        "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Mid-market Director attended webinar with moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -294,7 +311,7 @@
         "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Director title from a real company with moderate intent source."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -311,17 +328,17 @@
         "policy_decision": "ALLOW"
       },
       "actual": {
-        "priority": "P1",
-        "budget_range": "mid_market",
-        "timeline": "90_days",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Contact form submission with unclear intent and company size."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
-      "policy_match": true
+      "priority_match": false,
+      "policy_match": false
     },
     {
       "sample_id": "015",
@@ -338,7 +355,7 @@
         "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Director-level title from a real company attending a webinar."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -357,10 +374,10 @@
       "actual": {
         "priority": "P1",
         "budget_range": "mid_market",
-        "timeline": "90_days",
+        "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Director title from a real company with moderate intent source."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -377,17 +394,17 @@
         "policy_decision": "ALLOW"
       },
       "actual": {
-        "priority": "P1",
-        "budget_range": "mid_market",
-        "timeline": "30_days",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Contact form submission with unclear intent and company size."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
-      "policy_match": true
+      "priority_match": false,
+      "policy_match": false
     },
     {
       "sample_id": "018",
@@ -401,10 +418,10 @@
       "actual": {
         "priority": "P1",
         "budget_range": "mid_market",
-        "timeline": "90_days",
+        "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Director title from a business email domain with moderate intent source from a webinar."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -426,7 +443,7 @@
         "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Director title from a real company with moderate intent source."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -443,17 +460,17 @@
         "policy_decision": "ALLOW"
       },
       "actual": {
-        "priority": "P1",
-        "budget_range": "mid_market",
-        "timeline": "90_days",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "priority": "P2",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Low intent source and limited company clarity."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
-      "policy_match": true
+      "priority_match": false,
+      "policy_match": false
     },
     {
       "sample_id": "021",
@@ -466,16 +483,16 @@
       },
       "actual": {
         "priority": "P2",
-        "budget_range": "smb",
-        "timeline": "90_days",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Low intent source and limited company clarity."
       },
       "schema_valid": true,
       "repair_attempted": false,
       "priority_match": true,
-      "policy_match": true
+      "policy_match": false
     },
     {
       "sample_id": "022",
@@ -487,17 +504,17 @@
         "policy_decision": "REQUIRE_REVIEW"
       },
       "actual": {
-        "priority": "P2",
-        "budget_range": "unknown",
-        "timeline": "exploratory",
-        "routing": "REQUIRE_REVIEW",
-        "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mid-market Director attended webinar with moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
-      "policy_match": true
+      "priority_match": false,
+      "policy_match": false
     },
     {
       "sample_id": "023",
@@ -512,14 +529,14 @@
         "priority": "P2",
         "budget_range": "smb",
         "timeline": "90_days",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Real company name but unclear size with a contact form submission."
       },
       "schema_valid": true,
       "repair_attempted": false,
       "priority_match": true,
-      "policy_match": true
+      "policy_match": false
     },
     {
       "sample_id": "024",
@@ -531,17 +548,17 @@
         "policy_decision": "REQUIRE_REVIEW"
       },
       "actual": {
-        "priority": "P2",
-        "budget_range": "unknown",
-        "timeline": "exploratory",
-        "routing": "REQUIRE_REVIEW",
-        "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mid-market lead downloaded a whitepaper, indicating moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
-      "policy_match": true
+      "priority_match": false,
+      "policy_match": false
     },
     {
       "sample_id": "025",
@@ -554,16 +571,16 @@
       },
       "actual": {
         "priority": "P2",
-        "budget_range": "smb",
-        "timeline": "90_days",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Low intent source and limited company clarity."
       },
       "schema_valid": true,
       "repair_attempted": false,
       "priority_match": true,
-      "policy_match": true
+      "policy_match": false
     },
     {
       "sample_id": "026",
@@ -575,17 +592,17 @@
         "policy_decision": "REQUIRE_REVIEW"
       },
       "actual": {
-        "priority": "P2",
-        "budget_range": "unknown",
-        "timeline": "exploratory",
-        "routing": "REQUIRE_REVIEW",
-        "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mid-market Director attended webinar with moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
-      "policy_match": true
+      "priority_match": false,
+      "policy_match": false
     },
     {
       "sample_id": "027",
@@ -598,16 +615,16 @@
       },
       "actual": {
         "priority": "P2",
-        "budget_range": "smb",
-        "timeline": "90_days",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Real company name but unclear size and low intent source."
       },
       "schema_valid": true,
       "repair_attempted": false,
       "priority_match": true,
-      "policy_match": true
+      "policy_match": false
     },
     {
       "sample_id": "028",
@@ -619,17 +636,17 @@
         "policy_decision": "REQUIRE_REVIEW"
       },
       "actual": {
-        "priority": "P2",
-        "budget_range": "unknown",
-        "timeline": "exploratory",
-        "routing": "REQUIRE_REVIEW",
-        "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mid-market lead downloaded a whitepaper, indicating moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
-      "policy_match": true
+      "priority_match": false,
+      "policy_match": false
     },
     {
       "sample_id": "029",
@@ -642,16 +659,16 @@
       },
       "actual": {
         "priority": "P2",
-        "budget_range": "smb",
+        "budget_range": "unknown",
         "timeline": "exploratory",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Low intent source and limited company clarity."
       },
       "schema_valid": true,
       "repair_attempted": false,
       "priority_match": true,
-      "policy_match": true
+      "policy_match": false
     },
     {
       "sample_id": "030",
@@ -665,10 +682,10 @@
       "actual": {
         "priority": "P2",
         "budget_range": "unknown",
-        "timeline": "90_days",
+        "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Low intent source and limited company clarity."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -688,14 +705,14 @@
         "priority": "P2",
         "budget_range": "unknown",
         "timeline": "exploratory",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Contact form submission with unclear intent and company size."
       },
       "schema_valid": true,
       "repair_attempted": false,
       "priority_match": true,
-      "policy_match": true
+      "policy_match": false
     },
     {
       "sample_id": "032",
@@ -707,17 +724,17 @@
         "policy_decision": "REQUIRE_REVIEW"
       },
       "actual": {
-        "priority": "P2",
-        "budget_range": "smb",
-        "timeline": "90_days",
-        "routing": "REQUIRE_REVIEW",
-        "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
+        "routing": "AUTO",
+        "policy_decision": "ALLOW",
+        "notes": "Mid-market Director attended webinar with moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
-      "policy_match": true
+      "priority_match": false,
+      "policy_match": false
     },
     {
       "sample_id": "033",
@@ -729,16 +746,16 @@
         "policy_decision": "ALLOW"
       },
       "actual": {
-        "priority": "P2",
-        "budget_range": "smb",
-        "timeline": "90_days",
+        "priority": "P1",
+        "budget_range": "mid_market",
+        "timeline": "30_days",
         "routing": "AUTO",
         "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Mid-market lead downloaded a whitepaper, indicating moderate intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
+      "priority_match": false,
       "policy_match": true
     },
     {
@@ -756,7 +773,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Contact form submission with unclear intent and company size."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -774,16 +791,16 @@
       },
       "actual": {
         "priority": "P2",
-        "budget_range": "smb",
-        "timeline": "90_days",
-        "routing": "AUTO",
-        "policy_decision": "ALLOW",
-        "notes": "Mock qualification for eval sample"
+        "budget_range": "unknown",
+        "timeline": "exploratory",
+        "routing": "REQUIRE_REVIEW",
+        "policy_decision": "REQUIRE_REVIEW",
+        "notes": "Low intent source and limited company clarity."
       },
       "schema_valid": true,
       "repair_attempted": false,
       "priority_match": true,
-      "policy_match": true
+      "policy_match": false
     },
     {
       "sample_id": "036",
@@ -800,7 +817,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Self-employed individual with personal email domain and low intent source."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -822,7 +839,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "No real company and personal email domain indicates low qualification."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -844,7 +861,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "No real company and personal email domain indicates individual not qualified."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -866,7 +883,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "No real company and personal email domain detected."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -888,7 +905,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Individual with personal email domain and no clear company intent."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -910,7 +927,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Individual lead with personal email domain and unclear company size."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -932,7 +949,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Personal email domain and no real company name indicate low qualification."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -954,7 +971,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Personal email domain and no real company signals indicate low qualification."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -976,7 +993,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Personal email domain and no real company, indicating low qualification."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -998,7 +1015,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "No real company name and personal email domain detected."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -1020,7 +1037,7 @@
         "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "BLOCK",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Bot-like signal with suspicious disposable-like domain."
       },
       "schema_valid": true,
       "repair_attempted": false,
@@ -1037,16 +1054,16 @@
         "policy_decision": "BLOCK"
       },
       "actual": {
-        "priority": "P1",
-        "budget_range": "enterprise",
-        "timeline": "30_days",
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "BLOCK",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Lead from a known competitor, requires review."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
+      "priority_match": false,
       "policy_match": true
     },
     {
@@ -1059,16 +1076,16 @@
         "policy_decision": "BLOCK"
       },
       "actual": {
-        "priority": "P2",
-        "budget_range": "mid_market",
-        "timeline": "30_days",
+        "priority": "P0",
+        "budget_range": "enterprise",
+        "timeline": "immediate",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "BLOCK",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Enterprise demo request from a real company, but email domain is blocked."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
+      "priority_match": false,
       "policy_match": true
     },
     {
@@ -1081,16 +1098,16 @@
         "policy_decision": "REQUIRE_REVIEW"
       },
       "actual": {
-        "priority": "P2",
+        "priority": "P3",
         "budget_range": "unknown",
-        "timeline": "90_days",
+        "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "No real company name and personal email domain detected."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
+      "priority_match": false,
       "policy_match": true
     },
     {
@@ -1103,16 +1120,16 @@
         "policy_decision": "REQUIRE_REVIEW"
       },
       "actual": {
-        "priority": "P1",
-        "budget_range": "enterprise",
-        "timeline": "30_days",
+        "priority": "P3",
+        "budget_range": "unknown",
+        "timeline": "exploratory",
         "routing": "REQUIRE_REVIEW",
         "policy_decision": "REQUIRE_REVIEW",
-        "notes": "Mock qualification for eval sample"
+        "notes": "Personal email domain with no real company size clarity."
       },
       "schema_valid": true,
       "repair_attempted": false,
-      "priority_match": true,
+      "priority_match": false,
       "policy_match": true
     }
   ]

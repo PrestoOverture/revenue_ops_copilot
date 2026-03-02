@@ -1,4 +1,4 @@
-name: Eval Regression Gate
+name: Eval Gate
 
 on:
   push:
@@ -7,9 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  eval:
+  # runs on every push/PR, verifies eval pipeline code isn't broken
+  smoke:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,8 +25,55 @@ jobs:
           pip install -r requirements.txt
           pip install -e .
 
-      - name: Run eval (mock mode)
+      - name: Run eval (mock smoke test)
         run: python -m eval.run_eval --mock
 
       - name: Compare against baseline
         run: python -m eval.compare
+
+  # runs only when prompt or eval files change, catches real quality regressions
+  regression:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'pull_request' ||
+      github.event_name == 'push'
+    steps:
+      - name: Check for prompt/eval changes
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            eval_related:
+              - 'src/llm/**'
+              - 'eval/**'
+
+      - name: Checkout code
+        if: steps.filter.outputs.eval_related == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        if: steps.filter.outputs.eval_related == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        if: steps.filter.outputs.eval_related == 'true'
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Run eval (real LLM)
+        if: steps.filter.outputs.eval_related == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python -m eval.run_eval
+
+      - name: Compare against baseline
+        if: steps.filter.outputs.eval_related == 'true'
+        run: python -m eval.compare
+
+      - name: Skip (no eval-related changes)
+        if: steps.filter.outputs.eval_related != 'true'
+        run: echo "No prompt/eval changes detected, skipping real eval"

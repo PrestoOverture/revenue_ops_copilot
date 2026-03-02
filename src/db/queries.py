@@ -24,13 +24,7 @@ ALLOWED_LEAD_STATE_UPDATE_FIELDS = {
 }
 
 # insert an event into the events table
-async def insert_event(
-    conn: asyncpg.Connection,
-    tenant_id: UUID,
-    dedupe_key: str,
-    event_type: str,
-    payload: dict[str, Any],
-) -> UUID:
+async def insert_event(conn: asyncpg.Connection, tenant_id: UUID, dedupe_key: str, event_type: str, payload: dict[str, Any]) -> UUID:
     payload_json = json.dumps(payload)
     query = """
         INSERT INTO events (tenant_id, dedupe_key, event_type, payload)
@@ -43,16 +37,7 @@ async def insert_event(
     return event_id
 
 # insert a lead into the lead_state table
-async def insert_lead(
-    conn: asyncpg.Connection,
-    tenant_id: UUID,
-    external_lead_id: str,
-    email: str,
-    name: str | None,
-    company: str | None,
-    source: str | None,
-    raw_payload: dict[str, Any] | None,
-) -> UUID:
+async def insert_lead(conn: asyncpg.Connection, tenant_id: UUID, external_lead_id: str, email: str, name: str | None, company: str | None, source: str | None, raw_payload: dict[str, Any] | None) -> UUID:
     raw_payload_json = json.dumps(raw_payload) if raw_payload is not None else None
     query = """
         INSERT INTO lead_state (
@@ -89,12 +74,7 @@ async def get_lead_by_id(conn: asyncpg.Connection, lead_id: UUID) -> dict[str, A
 
 
 # update a lead in the lead_state table
-async def update_lead_state(
-    conn: asyncpg.Connection,
-    lead_id: UUID,
-    state: str,
-    **fields: Any,
-) -> None:
+async def update_lead_state(conn: asyncpg.Connection, lead_id: UUID, state: str, **fields: Any) -> None:
     values: list[Any] = [state]
     set_clauses: list[str] = ["state = $1", "updated_at = now()"]
 
@@ -114,14 +94,7 @@ async def update_lead_state(
     await conn.execute(query, *values)
 
 # insert an outbox into the outbox table
-async def insert_outbox(
-    conn: asyncpg.Connection,
-    tenant_id: UUID,
-    lead_id: UUID,
-    type: str,
-    idempotency_key: str,
-    payload: dict[str, Any],
-) -> UUID:
+async def insert_outbox(conn: asyncpg.Connection, tenant_id: UUID, lead_id: UUID, type: str, idempotency_key: str, payload: dict[str, Any]) -> UUID:
     payload_json = json.dumps(payload)
     insert_query = """
         INSERT INTO outbox (
