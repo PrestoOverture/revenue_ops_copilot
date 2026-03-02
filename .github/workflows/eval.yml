@@ -38,6 +38,9 @@ jobs:
       github.event_name == 'pull_request' ||
       github.event_name == 'push'
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Check for prompt/eval changes
         id: filter
         uses: dorny/paths-filter@v3
@@ -46,10 +49,6 @@ jobs:
             eval_related:
               - 'src/llm/**'
               - 'eval/**'
-
-      - name: Checkout code
-        if: steps.filter.outputs.eval_related == 'true'
-        uses: actions/checkout@v4
 
       - name: Set up Python 3.11
         if: steps.filter.outputs.eval_related == 'true'
